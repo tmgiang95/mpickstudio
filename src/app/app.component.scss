@@ -1,4 +1,6 @@
-body {
-    margin: 0;
-    padding: 0;
-  }
+.container-fluid {
+  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  background-color: #F0F0F1;
+}
