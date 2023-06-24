@@ -1,0 +1,45 @@
+<div class="header d-flex w-100 h-20 flex-column">
+  <div class="header d-flex w-100 h-10 justify-content-between">
+    <div class="d-flex user-info w-25 fill">
+      <a class="align-self-center p-2" type="button" (click)="isShow = !isShow">
+        <span>Bài viết</span>
+      </a>
+    </div>
+    <div class="user-info h-100 w-25 d-flex justify-content-end">
+      <label class="align-self-center m-2 text-white"> Chao, {{userName}}</label>
+      <img class="align-self-center m-2 vatar avatar-26 photo" alt=""
+           src="https://secure.gravatar.com/avatar/49c9327c26fdbc66daf31e573d0921fc?s=26&amp;d=mm&amp;r=g"
+           srcset="https://secure.gravatar.com/avatar/49c9327c26fdbc66daf31e573d0921fc?s=52&amp;d=mm&amp;r=g 2x"
+           height="26" width="26" loading="lazy" decoding="async">
+    </div>
+  </div>
+  <div *ngIf="isShow" class="header d-flex w-100 flex-row">
+    <ul class="d-flex flex-row" style="height: 42px">
+      <li>
+        <a class="fill" type="button">
+          <span style="height: 100%; display: block; vertical-align: middle; padding: 8px"
+                class="text-white">Tất cả bài viết</span>
+        </a>
+      </li>
+      <li>
+        <a class="fill" type="button">
+          <span style="height: 100%; display: block; vertical-align: middle; padding: 8px"
+                class="text-white">Bài viết mới</span>
+        </a>
+      </li>
+      <li>
+        <a class="fill" type="button">
+          <span style="height: 100%; display: block; vertical-align: middle; padding: 8px"
+                class="text-white">Chuyên mục</span>
+        </a>
+      </li>
+      <li>
+        <a class="fill" type="button">
+          <span style="height: 100%; display: block; vertical-align: middle; padding: 8px"
+                class="text-white">Thẻ</span>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</div>

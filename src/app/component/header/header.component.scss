@@ -1,0 +1,23 @@
+.header{
+  background-color: #1D2327;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  display: block;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  background-color: #2C3338;
+  color: #4393E6;
+}
+.fill {
+  min-height: 100%;
+  height: 100%;
+}
