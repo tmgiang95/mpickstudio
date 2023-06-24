@@ -9,7 +9,7 @@ import {RouterConstants} from "../../share/router-constants";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent{
-  constructor(private title: Title, private router: Router,){
+  constructor(private title: Title, private router: Router){
     this.title.setTitle('Login - M Pick Studio');
   }
 

@@ -1,7 +1,7 @@
-<div class="header d-flex w-100 h-20 flex-column">
-  <div class="header d-flex w-100 h-10 justify-content-between">
-    <div class="d-flex user-info w-25 fill">
-      <a class="align-self-center p-2" type="button" (click)="isShow = !isShow">
+<div class="d-flex w-100 flex-column position-absolute" style="height: 84px">
+  <div class="header d-flex w-100 justify-content-between">
+    <div class="d-flex user-info w-25 fill" (click)="isShow = !isShow">
+      <a class="align-self-center p-2" type="button" >
         <span>Bài viết</span>
       </a>
     </div>
@@ -22,7 +22,7 @@
         </a>
       </li>
       <li>
-        <a class="fill" type="button">
+        <a class="fill" type="button" (click)="newPostClick()">
           <span style="height: 100%; display: block; vertical-align: middle; padding: 8px"
                 class="text-white">Bài viết mới</span>
         </a>
