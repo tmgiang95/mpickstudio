@@ -17,6 +17,8 @@ export class AddNewPostComponent {
   wordCount = 0;
   lastUpdated: any;
   private interval: any;
+  // postStatusCollapsed: any = true;
+  // editStatusCollapsed: any = true;
 
   constructor() {
     this.templateForm = new FormGroup({
