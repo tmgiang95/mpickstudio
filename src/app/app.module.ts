@@ -9,21 +9,27 @@ import { HeaderComponent } from './component/header/header.component';
 import { AddNewPostComponent } from './component/add-new-post/add-new-post.component';
 import { QuillModule } from 'ngx-quill'
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatTabsModule} from "@angular/material/tabs";
+import { CheckboxTreeComponent } from './component/checkbox-tree/checkbox-tree.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AdminDashboardComponent,
     HeaderComponent,
-    AddNewPostComponent
+    AddNewPostComponent,
+    CheckboxTreeComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    QuillModule.forRoot(),
-    FormsModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        QuillModule.forRoot(),
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        MatTabsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

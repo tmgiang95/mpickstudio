@@ -13,7 +13,7 @@
       </div>
     </div>
     <div class="right-panel w-25 mt-3">
-      <div class="user-info card">
+      <div class="card">
         <div class="card-header d-flex flex-row">
           <a
             class="m-2"
@@ -146,6 +146,32 @@
           <div class="card-footer d-flex flex-row justify-content-end">
             <button class="btn btn-primary">Đăng</button>
           </div>
+        </div>
+      </div>
+
+      <div class="card mt-2">
+        <div class="card-header d-flex flex-row">
+          <a
+            class="m-2"
+            data-bs-toggle="collapse"
+            data-bs-target="#post-category"
+            aria-expanded="false"
+            aria-controls="post-category">
+            <label>
+              Chuyên mục
+            </label>
+          </a>
+        </div>
+        <div class="collapse show flex-column" id="post-category">
+          <div class="border m-2">
+            <mat-tab-group>
+              <mat-tab label="Tất cả">
+                <app-checkbox-tree></app-checkbox-tree>
+              </mat-tab>
+              <mat-tab label="Gần đây">Gần đây</mat-tab>
+            </mat-tab-group>
+          </div>
+
         </div>
       </div>
 
