@@ -1,8 +1,5 @@
-export interface Tree {
-  root: TreeNode;
-}
-
 export interface TreeNode {
+  id?:string;
   label: string;
   check?:boolean;
   children: TreeNode[];

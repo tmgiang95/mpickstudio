@@ -1,3 +1,5 @@
+import {PostPrivacy, PostStatus} from "../common.enum";
+
 export interface Post {
   id?: string;
   title?: string;
@@ -6,10 +8,11 @@ export interface Post {
   updatedDate?: string;
   categoryId?: string;
   view?: string;
-  status?: string;
+  status?: PostStatus;
   version?: string;
   tag?: string;
   avatar?: string;
-  privateStatus?: string;
+  privacy?: PostPrivacy;
   isOnTop?: boolean;
+  schedule?: string;
 }

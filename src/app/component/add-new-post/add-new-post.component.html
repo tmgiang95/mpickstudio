@@ -1,5 +1,5 @@
 <div class="container">
-  <h5 class="m-3">Thêm bài viết</h5>
+  <h1 class="m-3">Thêm bài viết</h1>
   <div>
     <div class="post d-flex flex-column justify-content-center w-75 p-3">
       <form [formGroup]="templateForm">
@@ -13,14 +13,14 @@
       </div>
     </div>
     <div class="right-panel w-25 mt-3">
+      <!--post status section-->
       <div class="card">
-        <div class="card-header d-flex flex-row">
-          <a
-            class="m-2"
-            data-bs-toggle="collapse"
-            data-bs-target="#post-status"
-            aria-expanded="false"
-            aria-controls="post-status">
+        <div class="card-header d-flex flex-row"
+             data-bs-toggle="collapse"
+             data-bs-target="#post-status"
+             aria-expanded="false"
+             aria-controls="post-status">
+          <a class="m-2">
             <label>
               Đăng
             </label>
@@ -29,8 +29,9 @@
         <div class="collapse show flex-column" id="post-status">
           <div class="card-body d-flex flex-column">
             <button class="btn btn-outline-secondary align-self-end">Xem trước</button>
+            <!--            edit Status-->
             <div class="d-flex flex-row">
-              <label class="m-2">Trạng thái: Đã xuất bản</label>
+              <label class="m-2">Trạng thái: <strong>{{postStatusString[post.status]}}</strong></label>
               <a
                 class="m-2"
                 data-bs-toggle="collapse"
@@ -48,21 +49,31 @@
                         type="button" id="dropdownMenuButton"
                         data-bs-toggle="dropdown"
                         aria-haspopup="true"
-                        aria-expanded="false">
-                  Đã xuất bản
+                        aria-expanded="false"
+                >
+                  {{postStatusString[postStatusSelected]}}
                 </button>
+
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#">Đã xuất bản</a>
-                  <a class="dropdown-item" href="#">Chờ duyệt</a>
-                  <a class="dropdown-item" href="#">Bản Nháp</a>
+                  <a *ngIf="post?.status === postStatus.Published" class="dropdown-item" href="#">Đã xuất bản</a>
+                  <a class="dropdown-item" (click)="postStatusSelected = postStatus.PendingApprove">Chờ duyệt</a>
+                  <a class="dropdown-item" (click)="postStatusSelected = postStatus.Draft">Bản Nháp</a>
                 </div>
-                <button class="btn btn-outline-primary m-1">Ok</button>
-                <button class="btn btn-outline-secondary m-1">Hủy</button>
+                <button class="btn btn-outline-primary m-1"
+                        (click)="post.status = postStatusSelected"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#edit-status">Ok
+                </button>
+                <button class="btn btn-outline-secondary m-1"
+                        (click)="postStatusSelected= post.status"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#edit-status">Hủy
+                </button>
               </div>
             </div>
-
+            <!--            edit Privacy-->
             <div class="d-flex flex-row">
-              <label class="m-2">Hiển thị: Công khai</label>
+              <label class="m-2">Hiển thị: <strong>{{postPrivacy[post.privacy]}}</strong></label>
               <a
                 class="m-2"
                 data-bs-toggle="collapse"
@@ -77,22 +88,42 @@
             <div class="collapse m-2 flex-column" id="edit-privacy">
               <div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioPublic" checked>
+                  <input [value]="0"
+                         [(ngModel)]="postPrivacySelected"
+                         class="form-check-input"
+                         type="radio"
+                         name="flexRadioDefault"
+                         id="flexRadioPublic">
                   <label class="form-check-label" for="flexRadioPublic">
                     Công khai
                   </label>
                 </div>
                 <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioPrivate">
+                  <input [value]="1"
+                         [(ngModel)]="postPrivacySelected"
+                         class="form-check-input"
+                         type="radio"
+                         name="flexRadioDefault"
+                         id="flexRadioPrivate">
                   <label class="form-check-label" for="flexRadioPrivate">
                     Riêng tư
                   </label>
                 </div>
               </div>
+              <button class="btn btn-outline-primary m-1"
+                      (click)="post.privacy = postPrivacySelected"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#edit-privacy">Ok
+              </button>
+              <button class="btn btn-outline-secondary m-1"
+                      (click)="postPrivacySelected= post.privacy"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#edit-privacy">Hủy
+              </button>
             </div>
-
-            <div class="d-flex flex-row">
-              <label class="m-2">Đăng ngay lập tức</label>
+            <!--            edit Schedule-->
+            <div class="d-flex flex-row flex-wrap">
+              <label class="m-2" [innerHTML]="timePost"></label>
               <a
                 class="m-2"
                 data-bs-toggle="collapse"
@@ -113,33 +144,40 @@
                           data-bs-toggle="dropdown"
                           aria-haspopup="true"
                           aria-expanded="false">
-                    Tháng 1
+                    Tháng {{month}}
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMonth">
-                    <a class="dropdown-item" href="#">Tháng 1</a>
-                    <a class="dropdown-item" href="#">Tháng 2</a>
-                    <a class="dropdown-item" href="#">Tháng 3</a>
-                    <a class="dropdown-item" href="#">Tháng 4</a>
-                    <a class="dropdown-item" href="#">Tháng 5</a>
-                    <a class="dropdown-item" href="#">Tháng 6</a>
-                    <a class="dropdown-item" href="#">Tháng 7</a>
-                    <a class="dropdown-item" href="#">Tháng 8</a>
-                    <a class="dropdown-item" href="#">Tháng 9</a>
-                    <a class="dropdown-item" href="#">Tháng 10</a>
-                    <a class="dropdown-item" href="#">Tháng 11</a>
-                    <a class="dropdown-item" href="#">Tháng 12</a>
+                    <a class="dropdown-item" (click)="month = '1'">Tháng 1</a>
+                    <a class="dropdown-item" (click)="month = '2'">Tháng 2</a>
+                    <a class="dropdown-item" (click)="month = '3'">Tháng 3</a>
+                    <a class="dropdown-item" (click)="month = '4'">Tháng 4</a>
+                    <a class="dropdown-item" (click)="month = '5'">Tháng 5</a>
+                    <a class="dropdown-item" (click)="month = '6'">Tháng 6</a>
+                    <a class="dropdown-item" (click)="month = '7'">Tháng 7</a>
+                    <a class="dropdown-item" (click)="month = '8'">Tháng 8</a>
+                    <a class="dropdown-item" (click)="month = '9'">Tháng 9</a>
+                    <a class="dropdown-item" (click)="month = '10'">Tháng 10</a>
+                    <a class="dropdown-item" (click)="month = '11'">Tháng 11</a>
+                    <a class="dropdown-item" (click)="month = '12'">Tháng 12</a>
                   </div>
                 </div>
-                <input style="width: 48px" type="number" class="form-control m-1" id="date" min="1" placeholder="DD">
-                <input style="width: 96px" type="number" class="form-control m-1" id="year" min="1" placeholder="YYYY">
+                <input [(ngModel)]="day" style="width: 48px" type="number" class="form-control m-1" id="date" min="1" placeholder="DD">
+                <input [(ngModel)]="year" style="width: 96px" type="number" class="form-control m-1" id="year" min="1" placeholder="YYYY">
               </div>
               <div class="d-flex flex-row">
-                <input style="width: 56px" type="number" class="form-control m-1" id="hour" min="0" max="24" placeholder="HH">
+                <input [(ngModel)]="hour" style="width: 56px" type="number" class="form-control m-1" id="hour" min="0" max="24"
+                       placeholder="HH">
                 <label class="d-flex align-items-center m-1">:</label>
-                <input style="width: 56px" type="number" class="form-control m-1" id="minute" min="0" max="60" placeholder="MM">
+                <input [(ngModel)]="minute" style="width: 56px" type="number" class="form-control m-1" id="minute" min="0" max="60"
+                       placeholder="MM">
               </div>
-              <button class="btn btn-outline-primary m-1">Ok</button>
-              <button class="btn btn-outline-secondary m-1">Hủy</button>
+              <button class="btn btn-outline-primary m-1"
+                      (click)="setTimeForPostSchedule()"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#edit-schedule">Ok</button>
+              <button class="btn btn-outline-secondary m-1"
+                      data-bs-toggle="collapse"
+                      data-bs-target="#edit-schedule">Hủy</button>
             </div>
 
           </div>
@@ -148,30 +186,86 @@
           </div>
         </div>
       </div>
-
+      <!--post category section-->
       <div class="card mt-2">
-        <div class="card-header d-flex flex-row">
-          <a
-            class="m-2"
-            data-bs-toggle="collapse"
-            data-bs-target="#post-category"
-            aria-expanded="false"
-            aria-controls="post-category">
+        <div class="card-header d-flex flex-row"
+             data-bs-toggle="collapse"
+             data-bs-target="#post-category"
+             aria-expanded="false"
+             aria-controls="post-category">
+          <a class="m-2">
             <label>
               Chuyên mục
             </label>
           </a>
         </div>
-        <div class="collapse show flex-column" id="post-category">
+        <div class="collapse flex-column m-2" id="post-category">
           <div class="border m-2">
             <mat-tab-group>
               <mat-tab label="Tất cả">
-                <app-checkbox-tree></app-checkbox-tree>
+                <app-checkbox-tree [datas]="postCategories"></app-checkbox-tree>
               </mat-tab>
               <mat-tab label="Gần đây">Gần đây</mat-tab>
             </mat-tab-group>
           </div>
-
+          <a class="m-2"
+             data-bs-toggle="collapse"
+             data-bs-target="#post-add-category"
+             aria-expanded="false"
+             aria-controls="post-add-category">+ Thêm chuyên mục</a>
+          <div class="collapse flex-column m-2" id="post-add-category">
+            <input class="form-control " type="text"
+                   maxlength="45"/>
+            <div>
+              <button class="btn btn-outline-secondary dropdown-toggle mt-2"
+                      type="button" id="dropdownParentCategory"
+                      data-bs-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false">
+                --- Chuyên mục cha ---
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownParentCategory">
+                <a class="dropdown-item" href="#">Category 1</a>
+                <a class="dropdown-item" href="#">Category 2</a>
+                <a class="dropdown-item" href="#">Category 3</a>
+              </div>
+            </div>
+            <div class="btn btn-outline-primary mt-2">Thêm chuyên mục</div>
+          </div>
+        </div>
+      </div>
+      <!--post tag section-->
+      <div class="card mt-2">
+        <div class="card-header d-flex flex-row"
+             data-bs-toggle="collapse"
+             data-bs-target="#post-tag"
+             aria-expanded="false"
+             aria-controls="post-tag">
+          <a class="m-2">
+            <label>
+              Thẻ (Tag)
+            </label>
+          </a>
+        </div>
+        <div class="collapse flex-column m-2" id="post-tag">
+          Tag
+        </div>
+      </div>
+      <!--post avatar section-->
+      <div class="card mt-2">
+        <div class="card-header d-flex flex-row"
+             data-bs-toggle="collapse"
+             data-bs-target="#post-avatar"
+             aria-expanded="false"
+             aria-controls="post-avatar">
+          <a class="m-2">
+            <label>
+              Ảnh đại diện
+            </label>
+          </a>
+        </div>
+        <div class="collapse flex-column m-2" id="post-avatar">
+          avatar
         </div>
       </div>
 

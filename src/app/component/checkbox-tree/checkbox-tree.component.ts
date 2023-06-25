@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Tree, TreeNode} from "../../core/models/tree.model";
+import {Component, Input} from '@angular/core';
+import {TreeNode} from "../../core/models/tree.model";
 
 @Component({
   selector: 'app-checkbox-tree',
@@ -7,35 +7,11 @@ import {Tree, TreeNode} from "../../core/models/tree.model";
   styleUrls: ['./checkbox-tree.component.scss']
 })
 export class CheckboxTreeComponent {
-  public datas: TreeNode[];
+  @Input() datas: TreeNode[];
   public selectedTreeNode: TreeNode | null;
 
   constructor() {
     this.selectedTreeNode = null;
-    this.datas = [
-      {
-        label: "HỢP TÁC MEDIA",
-        children: []
-      }, {
-        label: "M PICK ĐÁNH GIÁ",
-        children: []
-      }, {
-        label: "REVIEW",
-        children: []
-      }, {
-        label: "TIN TỨC",
-        children: []
-      }, {
-        label: "TIPS & TRICKS",
-        children: [{
-          label: "TIPS ANDROID",
-          children: []
-        },{
-          label: "TIPS IOS",
-          children: []
-        }]
-      },
-    ]
   }
 
   public selectNode(node: TreeNode, value: boolean): void {

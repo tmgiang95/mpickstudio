@@ -1,11 +1,11 @@
 <div class="d-flex w-100 flex-column position-absolute">
-  <div class="header d-flex w-100 justify-content-between">
+  <div class="header d-flex w-100 justify-content-between align-items-center">
     <div class="d-flex user-info w-25 fill" (click)="isShow = !isShow">
-      <a class="align-self-center p-2" type="button" >
+      <a class="align-self-center p-2 ms-4" type="button" >
         <span>Bài viết</span>
       </a>
     </div>
-    <div class="user-info h-100 w-25 d-flex justify-content-end"  (click)="isShowUserInfo = !isShowUserInfo">
+    <div class="user-info h-100 w-25 d-flex justify-content-end align-items-center"  (click)="isShowUserInfo = !isShowUserInfo">
       <label class="user-infoalign-self-center m-2 text-white"> Chào, {{userName}}</label>
       <img class="align-self-center m-2 vatar avatar-26 photo" alt=""
            src="../../../assets/img/profile.png"
@@ -13,8 +13,8 @@
            height="26" width="26" loading="lazy" decoding="async">
     </div>
   </div>
-  <div *ngIf="isShow" class="header d-flex w-100 flex-row">
-    <ul class="d-flex flex-row" style="height: 42px">
+  <div *ngIf="isShow" class="header d-flex w-100 flex-row align-items-center">
+    <ul class="d-flex flex-row align-items-center" style="height: 42px">
       <li>
         <a class="fill" type="button">
           <span style="height: 100%; display: block; vertical-align: middle; padding: 8px"
