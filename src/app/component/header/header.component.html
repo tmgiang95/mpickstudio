@@ -1,15 +1,15 @@
-<div class="d-flex w-100 flex-column position-absolute" style="height: 84px">
+<div class="d-flex w-100 flex-column position-absolute">
   <div class="header d-flex w-100 justify-content-between">
     <div class="d-flex user-info w-25 fill" (click)="isShow = !isShow">
       <a class="align-self-center p-2" type="button" >
         <span>Bài viết</span>
       </a>
     </div>
-    <div class="user-info h-100 w-25 d-flex justify-content-end">
-      <label class="align-self-center m-2 text-white"> Chao, {{userName}}</label>
+    <div class="user-info h-100 w-25 d-flex justify-content-end"  (click)="isShowUserInfo = !isShowUserInfo">
+      <label class="user-infoalign-self-center m-2 text-white"> Chào, {{userName}}</label>
       <img class="align-self-center m-2 vatar avatar-26 photo" alt=""
-           src="https://secure.gravatar.com/avatar/49c9327c26fdbc66daf31e573d0921fc?s=26&amp;d=mm&amp;r=g"
-           srcset="https://secure.gravatar.com/avatar/49c9327c26fdbc66daf31e573d0921fc?s=52&amp;d=mm&amp;r=g 2x"
+           src="../../../assets/img/profile.png"
+           srcset="../../../assets/img/profile.png"
            height="26" width="26" loading="lazy" decoding="async">
     </div>
   </div>
@@ -41,5 +41,21 @@
       </li>
     </ul>
 
+  </div>
+  <div *ngIf="isShowUserInfo" class="header d-flex flex-row align-self-end user-info" (mouseleave)="isShowUserInfo = false">
+    <div class="d-flex m-3">
+      <img class="align-self-center m-2 vatar avatar-26 photo" alt=""
+           src="../../../assets/img/profile.png"
+           srcset="../../../assets/img/profile.png"
+           height="56" width="56">
+    </div>
+    <div class="d-flex flex-column justify-content-center">
+      <a class="align-self-center p-2" type="button" >
+        <span>Sửa hồ sơ</span>
+      </a>
+      <a class="align-self-center p-2" type="button" (click)="logoutClick()">
+        <span>Đăng xuất</span>
+      </a>
+    </div>
   </div>
 </div>

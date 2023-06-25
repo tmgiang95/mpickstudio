@@ -15,9 +15,19 @@ a{
 
 a:hover {
   background-color: #2C3338;
-  color: #4393E6;
+  //color: #4393E6;
 }
 .fill {
   min-height: 100%;
   height: 100%;
+}
+.user-info{
+  width: 15%;
+  max-width: 15%;
+}
+.user-info:hover{
+  cursor: pointer;
+}
+.user-info label:hover{
+  cursor: pointer;
 }

@@ -1,0 +1,15 @@
+<div class="container d-flex flex-column w-100 justify-content-center">
+  <h5 class="mt-3">Chỉnh sửa bài viết</h5>
+  <form class="mt-3" [formGroup]="templateForm">
+    <quill-editor (onContentChanged)="contentChange($event)" [modules]="quillEditorModules" [styles]="{height: '400px', backgroundColor:'#faf8f8'}"
+                  formControlName="textEditor"></quill-editor>
+  </form>
+  <div class="d-flex justify-content-between">
+    <label>Số từ: {{wordCount}}</label>
+    <label>Chỉnh sửa lần cuối lúc: {{lastUpdated}}</label>
+  </div>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary" (click)="saveParagraph()">Save</button>
+  </div>
+</div>
+
