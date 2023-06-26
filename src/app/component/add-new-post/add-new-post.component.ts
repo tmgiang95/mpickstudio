@@ -28,6 +28,7 @@ export class AddNewPostComponent implements OnInit {
   postPrivacyString = PostPrivacyString;
   postPrivacySelected: PostPrivacy;
   postCategories: any = [];
+  postCategoriesFlat: any = [];
   day: string = moment().format('DD');
   month: string = moment().format('MM');
   year: string = moment().format('YYYY');
@@ -40,6 +41,8 @@ export class AddNewPostComponent implements OnInit {
     privacy: this.postPrivacy.Public
   };
   private interval: any;
+  selectedParentCat: any;
+  newCategoryName: any;
 
 
   constructor(private http: HttpClient, private dataService: DataService) {
@@ -87,7 +90,23 @@ export class AddNewPostComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.loadCategory().subscribe((cats: any) => {
-      this.postCategories = cats;
+      this.postCategories = cats.hierarchy;
+      this.postCategoriesFlat = cats.flat;
+    })
+  }
+
+  selectParentCat(cat?: any) {
+    this.selectedParentCat = cat
+  }
+
+  addNewCategory() {
+    this.dataService.createCategory(this.newCategoryName, this.selectedParentCat?.id).subscribe(res => {
+      if(res){
+        this.dataService.loadCategory().subscribe((cats: any) => {
+          this.postCategories = cats.hierarchy;
+          this.postCategoriesFlat = cats.flat;
+        })
+      }
     })
   }
 }

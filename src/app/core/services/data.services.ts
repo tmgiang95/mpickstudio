@@ -7,16 +7,29 @@ export class DataService {
   constructor(private http: HttpClient) {
 
   }
+  createCategory(name: string, parentId: string){
+    console.log(name)
+    console.log(parentId)
+    return this.http.post('https://mpickstudio-abdc1-default-rtdb.firebaseio.com/category.json',{
+      name: name,
+      parent_id: parentId
+    })
+
+  }
+
   loadCategory(): Observable<any> {
     return this.http.get('https://mpickstudio-abdc1-default-rtdb.firebaseio.com/category.json')
       .pipe(map((cats: any) => {
         const postCategories = [];
+        const postCategoriesFlat = [];
         for (let catsKey in cats) {
           const cat = cats[catsKey];
           if(!cat) continue;
+          cat.id = catsKey;
+          postCategoriesFlat.push(cat)
           if (!cat.parent_id) {
             postCategories.push({
-              id: +catsKey,
+              id: catsKey,
               label: cat.name,
               check: false,
               children: []
@@ -27,11 +40,14 @@ export class DataService {
           const cat = cats[catsKey];
           if(!cat) continue;
           if (cat.parent_id) {
-            cat.id = +catsKey;
+            cat.id = catsKey;
             this.addChildCategory(postCategories, cat)
           }
         }
-        return postCategories;
+        return {
+          flat:postCategoriesFlat,
+          hierarchy:postCategories
+        };
       }))
   }
   addChildCategory(cats: any[], cat: any){

@@ -215,6 +215,7 @@
              aria-controls="post-add-category">+ Thêm chuyên mục</a>
           <div class="collapse flex-column m-2" id="post-add-category">
             <input class="form-control " type="text"
+                   [(ngModel)]="newCategoryName"
                    maxlength="45"/>
             <div>
               <button class="btn btn-outline-secondary dropdown-toggle mt-2"
@@ -222,15 +223,16 @@
                       data-bs-toggle="dropdown"
                       aria-haspopup="true"
                       aria-expanded="false">
-                --- Chuyên mục cha ---
+                {{selectedParentCat ? selectedParentCat.name : '--- Chuyên mục cha ---'}}
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownParentCategory">
-                <a class="dropdown-item" href="#">Category 1</a>
-                <a class="dropdown-item" href="#">Category 2</a>
-                <a class="dropdown-item" href="#">Category 3</a>
+                <a class="dropdown-item" (click)="selectParentCat()"> --- Chuyên mục cha ---</a>
+                <a class="dropdown-item" *ngFor="let cat of postCategoriesFlat" (click)="selectParentCat(cat)">{{cat.name}}</a>
               </div>
             </div>
-            <div class="btn btn-outline-primary mt-2">Thêm chuyên mục</div>
+            <button class="btn btn-outline-primary mt-2" (click)="addNewCategory()">
+              Thêm chuyên mục
+            </button>
           </div>
         </div>
       </div>
