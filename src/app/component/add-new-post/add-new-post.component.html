@@ -161,23 +161,29 @@
                     <a class="dropdown-item" (click)="month = '12'">Tháng 12</a>
                   </div>
                 </div>
-                <input [(ngModel)]="day" style="width: 48px" type="number" class="form-control m-1" id="date" min="1" placeholder="DD">
-                <input [(ngModel)]="year" style="width: 96px" type="number" class="form-control m-1" id="year" min="1" placeholder="YYYY">
+                <input [(ngModel)]="day" style="width: 48px" type="number" class="form-control m-1" id="date" min="1"
+                       placeholder="DD">
+                <input [(ngModel)]="year" style="width: 96px" type="number" class="form-control m-1" id="year" min="1"
+                       placeholder="YYYY">
               </div>
               <div class="d-flex flex-row">
-                <input [(ngModel)]="hour" style="width: 56px" type="number" class="form-control m-1" id="hour" min="0" max="24"
+                <input [(ngModel)]="hour" style="width: 56px" type="number" class="form-control m-1" id="hour" min="0"
+                       max="24"
                        placeholder="HH">
                 <label class="d-flex align-items-center m-1">:</label>
-                <input [(ngModel)]="minute" style="width: 56px" type="number" class="form-control m-1" id="minute" min="0" max="60"
+                <input [(ngModel)]="minute" style="width: 56px" type="number" class="form-control m-1" id="minute"
+                       min="0" max="60"
                        placeholder="MM">
               </div>
               <button class="btn btn-outline-primary m-1"
                       (click)="setTimeForPostSchedule()"
                       data-bs-toggle="collapse"
-                      data-bs-target="#edit-schedule">Ok</button>
+                      data-bs-target="#edit-schedule">Ok
+              </button>
               <button class="btn btn-outline-secondary m-1"
                       data-bs-toggle="collapse"
-                      data-bs-target="#edit-schedule">Hủy</button>
+                      data-bs-target="#edit-schedule">Hủy
+              </button>
             </div>
 
           </div>
@@ -227,7 +233,8 @@
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownParentCategory">
                 <a class="dropdown-item" (click)="selectParentCat()"> --- Chuyên mục cha ---</a>
-                <a class="dropdown-item" *ngFor="let cat of postCategoriesFlat" (click)="selectParentCat(cat)">{{cat.name}}</a>
+                <a class="dropdown-item" *ngFor="let cat of postCategoriesFlat"
+                   (click)="selectParentCat(cat)">{{cat.name}}</a>
               </div>
             </div>
             <button class="btn btn-outline-primary mt-2" (click)="addNewCategory()">
@@ -249,8 +256,23 @@
             </label>
           </a>
         </div>
-        <div class="collapse flex-column m-2" id="post-tag">
-          Tag
+        <div class="collapse m-2" id="post-tag">
+          <div class="d-flex flex-row">
+            <input class="form-control " type="text"
+                   [(ngModel)]="tagDatas"
+                   maxlength="45"/>
+            <button class="btn btn-outline-primary ms-2" (click)="addTag()">Thêm</button>
+            <div>
+            </div>
+          </div>
+          <label class="m-2">Phân cách các thẻ bằng dấu phẩy</label>
+          <div class="d-flex flex-row flex-wrap">
+            <div class="d-flex flex-row flex-wrap" *ngFor="let tag of tagDataArray">
+              <div>
+                <span class="btn-label m-2"><i class="fa fa-remove" (click)="removeTag(tag)"></i></span>{{tag}}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <!--post avatar section-->
@@ -266,12 +288,17 @@
             </label>
           </a>
         </div>
-        <div class="collapse flex-column m-2" id="post-avatar">
-          avatar
+        <div class="collapse" id="post-avatar">
+          <div class="d-flex flex-column flex-wrap m-3">
+            <div class="input-group">
+              <input type="file" class="form-control" id="inputAvatar" aria-describedby="inputAvatar" aria-label="Upload">
+            </div>
+          </div>
+          <div class="card-footer d-flex flex-row justify-content-end">
+            <button class="btn btn-primary">Upload Image</button>
+          </div>
         </div>
       </div>
-
-
     </div>
   </div>
 </div>

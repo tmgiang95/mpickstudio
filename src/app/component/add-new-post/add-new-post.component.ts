@@ -43,6 +43,8 @@ export class AddNewPostComponent implements OnInit {
   private interval: any;
   selectedParentCat: any;
   newCategoryName: any;
+  tagDatas: string;
+  tagDataArray: string[] = [];
 
 
   constructor(private http: HttpClient, private dataService: DataService) {
@@ -87,7 +89,6 @@ export class AddNewPostComponent implements OnInit {
   }
 
 
-
   ngOnInit(): void {
     this.dataService.loadCategory().subscribe((cats: any) => {
       this.postCategories = cats.hierarchy;
@@ -101,12 +102,29 @@ export class AddNewPostComponent implements OnInit {
 
   addNewCategory() {
     this.dataService.createCategory(this.newCategoryName, this.selectedParentCat?.id).subscribe(res => {
-      if(res){
+      if (res) {
         this.dataService.loadCategory().subscribe((cats: any) => {
           this.postCategories = cats.hierarchy;
           this.postCategoriesFlat = cats.flat;
         })
       }
     })
+  }
+
+  addTag() {
+    if (this.tagDatas) {
+      let tagDataSplit = this.tagDatas.split(',');
+      for (let tag of tagDataSplit) {
+        if (this.tagDataArray.filter(t => t === tag).length < 1)
+          this.tagDataArray.push(tag);
+      }
+      this.tagDatas = '';
+    }
+    this.post.tag = this.tagDataArray.join(',')
+  }
+
+  removeTag(tag: string) {
+    const idx = this.tagDataArray.findIndex(t => t === tag);
+    this.tagDataArray.splice(idx,1)
   }
 }
